@@ -1,15 +1,12 @@
 from art import logo
 from os import system
 from calculator import *
+system('clear')
 print(logo)
-result = 0 
 
+def calculator():
+    result = 0 
 
-
-
-
-
-while  True:
     firs_number = float(input("Enter the first number: "))
     operations = {
         "+": add,
@@ -17,47 +14,31 @@ while  True:
         "*": multiply,
         "/": divide
     }
-
     for operation in operations:
         print(operation)
 
-    operator = input("Pick the operation: ")  
-    second_number = float(input("Enter the next number: "))
 
-    operation_function = operations[operator]
-    result = operation_function(firs_number, second_number)
+    while True:
 
-    print(result)
+        operator = input("Pick the operation: ")  
 
-    play_again = input("Type 'y' to continue calculating with 8.0, or type 'n' to start a new calculation: ")
-
-    if play_again == "n":
-        result = 0
-        system("clear")
-        print(logo)
-    else:
-        while play_again != "n":
-            operations = {
-                "+": add,
-                "-": minus,
-                "*": multiply,
-                "/": divide
-            }
-            for operation in operations:
-                print(operation)
-            operator = input("Pick the operation: ")  
-
-            second_number = float(input("Enter the next number: "))
+        second_number = float(input("Enter the next number: "))
 
 
 
-            operation_function = operations[operator]
-            result = operation_function(result, second_number)
+        operation_function = operations[operator]
+        result = operation_function(firs_number, second_number)
+        print(f"{firs_number} + {second_number} = {result}")
+        result2 = result
+        if input("Type 'y' to continue calculating with 8.0, or type 'n' to start a new calculation:") == "y":
+            firs_number = result
+            continue
+        else:
+            system('clear')
+            print(logo)
+            calculator()
 
-            print(result)
-            play_again = input("Type 'y' to continue calculating with 8.0, or type 'n' to start a new calculation: ")
-            if play_again != "n":
-                continue
+calculator()
 
 
 
